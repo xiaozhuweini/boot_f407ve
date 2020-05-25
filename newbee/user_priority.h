@@ -1,0 +1,67 @@
+#ifdef __USER_PRIORITY_H__
+#define __USER_PRIORITY_H__
+
+
+
+//usb
+#define USBD_PRIO_STA_UPDATE			5
+
+//dtu
+#define DTU_PRIO_TIME_TICK				30
+#define DTU_PRIO_TELEPHONE_HANDLER		2
+#define DTU_PRIO_RECV_BUF_HANDLER		2
+#define DTU_PRIO_TTS_HANDLER			4
+#define DTU_PRIO_DIAL_PHONE				4
+#define DTU_PRIO_AT_DATA_HANDLER		3
+
+//ptcl
+#define PTCL_PRIO_AUTO_REPORT_MANAGE	28
+#define PTCL_PRIO_AUTO_REPORT			29
+#define PTCL_PRIO_DTU_RECV_HANDLER		3
+#define PTCL_PRIO_TC_RECV_HANDLER		3
+#define PTCL_PRIO_TC_BUF_HANDLER		2
+#define PTCL_PRIO_SHELL_RECV_HANDLER	3
+#define PTCL_PRIO_LORA_RECV_HANDLER		3
+#define PTCL_PRIO_BD_RECV_HANDLER		3
+
+#if 0
+//warn_manage
+#define WM_PRIO_WARN_BASE				10
+#define WM_PRIO_TIME_TICK				25
+#define WM_PRIO_KEY_DETECT				2
+
+//sl427
+#define SL427_PRIO_REPORT				26
+
+//pwr_manage
+#define PWRM_PRIO_RECV_BUF_HANDLER		2
+
+//xmodem
+#define XM_PRIO_FILE_TRANS				5
+
+//smt_manage
+#define SMTMNG_PRIO_TIME_TICK			27
+
+//lora
+#define LORA_PRIO_RECV_BUF_HANDLER		2
+
+//sample
+#define SAMPLE_PRIO_EXTI_HANDLER		2
+#define SAMPLE_PRIO_DATA_STORE			30
+#define SAMPLE_PRIO_DATA_STORE_EX		30
+#define SAMPLE_PRIO_DATA_DOWNLOAD_EX	20
+
+//bx5k
+#define BX5K_PRIO_SCREEN_UPDATE			30
+
+//±±¶·
+#define BD_PRIO_TIME_TICK				27
+#define BD_PRIO_RECV_BUF_HANDLER		2
+#define BD_PRIO_BUF_DATA_HANDLER		5
+#define BD_PRIO_SEND_TEST				21
+#endif
+
+
+
+#endif
+

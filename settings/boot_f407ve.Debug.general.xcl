@@ -1,0 +1,13 @@
+"D:\Program Files\IAR Systems\Embedded Workbench 7.4\arm\bin\armproc.dll" 
+
+"D:\Program Files\IAR Systems\Embedded Workbench 7.4\arm\bin\armjlink2.dll" 
+
+"E:\project\rt-thread\bsp\boot_f407ve\Debug\Exe\boot_f407ve.out" 
+
+--plugin "D:\Program Files\IAR Systems\Embedded Workbench 7.4\arm\bin\armbat.dll" 
+
+--device_macro "D:\Program Files\IAR Systems\Embedded Workbench 7.4\arm\config\debugger\ST\STM32F4xx.dmac" 
+
+
+
+
