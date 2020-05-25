@@ -1,4 +1,4 @@
-#ifdef __USER_PRIORITY_H__
+#ifndef __USER_PRIORITY_H__
 #define __USER_PRIORITY_H__
 
 
