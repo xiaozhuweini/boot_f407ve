@@ -1,4 +1,5 @@
 #include "drv_fyyp.h"
+#include "string.h"
 
 
 
@@ -229,5 +230,132 @@ rt_uint16_t fyyp_str_to_array(rt_uint8_t *pdst, rt_uint8_t const *psrc, rt_uint1
 	}
 
 	return dst_len;
+}
+
+rt_uint8_t fyyp_str_to_float(float *pfloat, rt_uint8_t const *pdata, rt_uint8_t data_len)
+{
+	rt_uint8_t i = 0, sign, pos;
+
+	if((float *)0 == pfloat)
+	{
+		return RT_FALSE;
+	}
+	if((rt_uint8_t *)0 == pdata)
+	{
+		return RT_FALSE;
+	}
+	if(0 == data_len)
+	{
+		return RT_FALSE;
+	}
+
+	if('-' == pdata[i])
+	{
+		sign = RT_TRUE;
+		i++;
+	}
+	else
+	{
+		sign = RT_FALSE;
+	}
+
+	for(pos = i; pos < data_len; pos++)
+	{
+		if('.' == pdata[pos])
+		{
+			break;
+		}
+	}
+	if(RT_FALSE == fyyp_is_number(pdata + i, pos - i))
+	{
+		return RT_FALSE;
+	}
+	if(pos < data_len)
+	{
+		if(RT_FALSE == fyyp_is_number(pdata + pos + 1, data_len - pos - 1))
+		{
+			return RT_FALSE;
+		}
+		data_len -= (pos + 1);
+		*pfloat = (float)fyyp_str_to_hex(pdata + pos + 1, data_len);
+		while(data_len)
+		{
+			data_len--;
+			*pfloat /= (float)10;
+		}
+	}
+	else
+	{
+		*pfloat = (float)0;
+	}
+
+	*pfloat += (float)fyyp_str_to_hex(pdata + i, pos - i);
+	if(RT_TRUE == sign)
+	{
+		*pfloat = (float)0 - *pfloat;
+	}
+
+	return RT_TRUE;
+}
+
+rt_uint8_t *fyyp_mem_find(rt_uint8_t const *pmem1, rt_uint16_t len1, rt_uint8_t const *pmem2, rt_uint16_t len2)
+{
+	if(0 == len2)
+	{
+		return (rt_uint8_t *)0;
+	}
+
+	while(len1 >= len2)
+	{
+		if(!memcmp((void *)pmem1, (void *)pmem2, len2))
+		{
+			return (rt_uint8_t *)pmem1;
+		}
+		len1--;
+		pmem1++;
+	}
+
+	return (rt_uint8_t *)0;
+}
+
+rt_uint8_t fyyp_str_to_int(rt_int32_t *pval, rt_uint8_t const *pdata, rt_uint8_t data_len)
+{
+	rt_uint8_t i = 0, sign;
+
+	if((rt_int32_t *)0 == pval)
+	{
+		return RT_FALSE;
+	}
+	if((rt_uint8_t *)0 == pdata)
+	{
+		return RT_FALSE;
+	}
+	if(0 == data_len)
+	{
+		return RT_FALSE;
+	}
+
+	if('-' == pdata[i])
+	{
+		sign = RT_TRUE;
+		i++;
+	}
+	else
+	{
+		sign = RT_FALSE;
+	}
+
+	if(RT_FALSE == fyyp_is_number(pdata + i, data_len - i))
+	{
+		return RT_FALSE;
+	}
+
+	*pval = fyyp_str_to_hex(pdata + i, data_len - i);
+	if(RT_TRUE == sign)
+	{
+		*pval = 0 - *pval;
+	}
+
+	return RT_TRUE;
 }
 

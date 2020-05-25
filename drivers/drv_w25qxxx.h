@@ -72,6 +72,7 @@ void w25qxxx_open_ex(void);
 void w25qxxx_close_ex(void);
 rt_uint8_t w25qxxx_program_ex(rt_uint32_t addr, rt_uint8_t const *pdata, rt_uint16_t data_len);
 rt_uint8_t w25qxxx_block_erase_ex(rt_uint32_t addr);
+rt_uint8_t w25qxxx_read_ex(rt_uint32_t addr, rt_uint8_t *pdata, rt_uint16_t data_len);
 
 
 

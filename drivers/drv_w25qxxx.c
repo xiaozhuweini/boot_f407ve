@@ -541,3 +541,21 @@ rt_uint8_t w25qxxx_block_erase_ex(rt_uint32_t addr)
 	return _w25qxxx_erase(addr, W25QXXX_CMD_BLOCK_ERASE);
 }
 
+rt_uint8_t w25qxxx_read_ex(rt_uint32_t addr, rt_uint8_t *pdata, rt_uint16_t data_len)
+{
+	if(addr >= W25QXXX_BYTES_CHIP)
+	{
+		return W25QXXX_ERR_ARG;
+	}
+	if((rt_uint8_t *)0 == pdata)
+	{
+		return W25QXXX_ERR_ARG;
+	}
+	if(0 == data_len)
+	{
+		return W25QXXX_ERR_ARG;
+	}
+	
+	return _w25qxxx_data_read(addr, pdata, data_len);
+}
+
